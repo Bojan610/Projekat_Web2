@@ -1,0 +1,36 @@
+<form [formGroup]="registrationForm" >
+    <div class="form-group required">
+      <label>Email</label>
+      <input class="form-control" formControlName="Email">
+    </div>
+    <div class="form-group required">
+      <label>Name</label>
+      <input class="form-control" formControlName="Name">
+    </div>
+  
+    <div class="form-group required">
+      <label>Last Name</label>
+      <input class="form-control" formControlName="LastName">
+    </div>
+    <div class="form-group required">
+        <label>Date of birth</label>
+        <input type="date" class="form-control" formControlName="Birth">
+    </div>
+    <div class="form-group required">
+        <label>Address</label>
+        <input class="form-control" formControlName="Address">
+    </div>
+      <div class="form-group required">
+        <label>Password</label>
+        <input type="password" class="form-control" formControlName="Password">
+      </div>
+      <div class="form-group required">
+        <label>Confirm password</label>
+        <input type="password" class="form-control" formControlName="PasswordConfirm">
+      </div>
+    <div class="form-row">
+      <div class="form-group col-md-8 offset-md-2">
+        <button type="submit" class="btn btn-lg btn-block" (click)="onSubmit()">Register</button>
+      </div>
+    </div>
+  </form>
