@@ -1,11 +1,11 @@
-export class Registration{
+export class UpdateUser{
     username:string = "";
     email:string = "";
     name: string = "";
     lastName: string = "";
     birth: Date = new Date();
     address: string = "";
-    userKind: string = "";
     password:string = "";
-    passwordConfirm:string = "";   
+    passwordConfirm:string = "";
+    
 }

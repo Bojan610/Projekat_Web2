@@ -10,7 +10,7 @@
   </div>
   <div class="form-row">
     <div class="form-group col-md-8 offset-md-2">
-      <button type="submit" class="btn btn-lg btn-block" (click)="onSubmit()">Log In</button>
+      <button type="submit" class="btn btn-lg btn-block" (click)="onSubmit()" [disabled]="!loginForm.valid">Login</button>
     </div>
   </div>
 </form>

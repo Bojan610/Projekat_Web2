@@ -1,4 +1,4 @@
-export class Registration{
+export class UserDisplay{
     username:string = "";
     email:string = "";
     name: string = "";
@@ -6,6 +6,4 @@ export class Registration{
     birth: Date = new Date();
     address: string = "";
     userKind: string = "";
-    password:string = "";
-    passwordConfirm:string = "";   
 }

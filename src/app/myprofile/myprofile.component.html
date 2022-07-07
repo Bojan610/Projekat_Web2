@@ -1,0 +1,49 @@
+<body  style="background-color:white; margin: 150px;">
+  <div class="mb-3" style="padding: 15px;">
+    <form class="row g-3" [formGroup]="myprofileForm">
+        <div class="col-md-4">
+          <label for="validationDefault01" class="form-label">First name</label>
+          <input type="text" class="form-control" formControlName="Name" value="{{user.name}}">
+        </div>
+        <div class="col-md-4">
+          <label for="validationDefault02" class="form-label">Last name</label>
+          <input type="text" class="form-control" formControlName="LastName" value="{{user.lastName}}">
+        </div>
+        <div class="col-md-4">
+          <label for="validationDefaultUsername" class="form-label">Username</label>
+          <div class="input-group">
+            <input type="text" class="form-control" formControlName="Username" value="{{user.username}}">
+          </div>
+        </div>
+        <div class="col-md-4" style="padding-top: 10px;">
+          <label for="validationDefault03" class="form-label">Email</label><br>
+          <label for="validationDefault03" class="form-label">{{email}}</label>     
+        </div>
+        <div class="col-md-4" style="padding-top: 10px;">
+            <label for="validationDefault03" class="form-label">Date of birth</label>
+            <input type="date" class="form-control" formControlName="Birth" value="{{user.birth}}">
+          </div>
+        <div class="col-md-4" style="padding-top: 10px;">
+          <label for="validationDefault05" class="form-label">Address</label>
+          <input type="text" class="form-control" formControlName="Address" value="{{user.address}}">
+        </div>
+        <div class="col-md-4" style="padding-top: 10px;">
+            <label for="validationDefault05" class="form-label">Type of user</label><br>
+            <label for="validationDefault05" class="form-label">{{user.userKind}}</label>
+          </div>
+          <div class="col-md-4" style="padding-top: 10px;">
+            <label for="validationDefault05" class="form-label">Password</label>
+            <input type="password" class="form-control"  formControlName="Password">
+          </div>
+          <div class="col-md-4" style="padding-top: 10px;">
+            <label for="validationDefault05" class="form-label">Confirm password</label>
+            <input type="password" class="form-control" formControlName="PasswordConfirm">
+          </div>
+        
+        <div class="col-12" style="margin-left: 480px; margin-top: 40px;">
+          <button class="btn btn-primary" type="submit" style="border-color: white;" (click)="onSubmit()" [disabled]="!myprofileForm.valid">Save changes</button>
+          <button class="btn btn-primary" type="submit" style="margin-left: 15px;background-color: red;border-color: white;" (click)="cancel()">Cancel</button>
+        </div>         
+      </form>
+  </div>
+</body>
