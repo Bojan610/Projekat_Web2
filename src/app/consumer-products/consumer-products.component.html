@@ -1,20 +1,19 @@
 <nav class="navbar navbar-expand-lg bg-light"  style="background-color: black">
     <div class="container-fluid">
-      <a class="navbar-brand" href="/admin-home/{{email}}">Home</a>
+      <a class="navbar-brand" href="/consumer-home/{{email}}">HOME</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <a class="nav-link" href="/admin-home/{{email}}/myprofile">My profile</a>
-          <a class="nav-link" href="/admin-home/{{email}}/deliverers">Deliverers</a>
-          <a class="nav-link" href="/admin-home/{{email}}/products">Products</a>
+          <a class="nav-link" href="/consumer-home/{{email}}/myprofile">MY PROFILE</a>
+          <a class="nav-link" href="/consumer-home/{{email}}/products">SHOP</a>
+          <a class="nav-link" href="/consumer-home/{{email}}/mycart">MY CART</a>
+          <a class="nav-link" href="/consumer-home/{{email}}/currentOrder">MY CURRENT ORDER</a>
         </div>
       </div>
     </div>
-  </nav>
-
-<button class="btn btn-success" style="background-color: slategrey;margin-left: 30px; margin-top: 20px;" data-toggle="modal" data-target="#addNewProduct">Add new product</button>
+</nav>
 <div style="background-color: white;margin: 30px;">
     <div [hidden]="products.length !== 0">
         <p>There is no products currently</p>
@@ -27,54 +26,52 @@
                     <th scope="col">Product name</th>
                     <th scope="col">Price</th>
                     <th scope="col">Ingredients</th>
+                    <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let item of products">
                     <td>{{item.productName}}</td>
                     <td>{{item.price}} RSD</td>
-                    <td>{{item.ingredients}}</td>              
+                    <td>{{item.ingredients}}</td>   
+                    <td>
+                        <button class="btn btn-success" style="background-color: slategrey;" data-toggle="modal" data-target="#addToCart" (click)="modalAddToCart(item)">Add to cart</button>
+                    </td>            
                 </tr>
             </tbody>
         </table>
     </div>
 </div>
-<!--MODAL FOR ADD NEW PRODUCT-->
-<div class="modal fade" id="addNewProduct" tabindex="-1" role="dialog" aria-labelledby="addNewProduct" aria-hidden="true">
+<!--MODAL FOR ADD TO CART PRODUCT-->
+<div class="modal fade" id="addToCart" tabindex="-1" role="dialog" aria-labelledby="addToCart" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="studentEdit">Adding new product</h5>
+          <h5 class="modal-title" id="studentEdit">Adding product to cart</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
           <div class="tab-content">
-            <form [formGroup]="addProductForm" class="form">
+            <form [formGroup]="addToCartForm" class="form">
                 <div class="form-group row">
-                    <label for="lat" class="col-sm-4 col-form-label">Product name</label>
+                    <label for="lat" class="col-sm-4 col-form-label">Product </label>
                     <div class="col-sm-8">
-                        <input formControlName="name" type="text" class="form-control" id="name" placeholder="Enter the product name">
+                        {{product.productName}}
                     </div>
-                </div>
+                </div>  
                 <div class="form-group row">
-                    <label for="lat" class="col-sm-4 col-form-label">Product price</label>
+                    <label for="lat" class="col-sm-4 col-form-label">Quantity </label>
                     <div class="col-sm-8">
-                        <input formControlName="price" type="" class="form-control" id="price" placeholder="Enter the product price" min="0">
+                        <input formControlName="quantity" type="number" class="form-control" id="quantity" placeholder="Enter the quantity of product" min="1">
                     </div>
-                </div>
-              <div class="form-group row">
-                <label for="lat" class="col-sm-4 col-form-label">Ingredients</label>
-                <div class="col-sm-8">
-                    <input formControlName="ingredients" type="text" class="form-control" id="ingredients" placeholder="Enter the product ingredients">
-                </div>
-              </div>
+                </div>             
             </form>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-            <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="addNewProduct()" [disabled]="!addProductForm.valid">Add</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="addToCart()" [disabled]="!addToCartForm.valid">Finish</button>
           </div>
         </div>
       </div>

@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs/internal/Observable";
 import { environment } from "src/environments/environment";
 import { DelivererDisplay } from "../Models/deliverer-display.model";
+import { Product } from "../Models/product.model";
 import { RetString } from "../Models/retString.model";
 
 @Injectable({
@@ -31,5 +32,13 @@ export class AdminService {
 
       declineDeliverer(param:RetString):Observable<Boolean> {
         return this.http.post<Boolean>(environment.serverURL + '/api/admin/declineDeliverer', param);
+      }
+
+      getAllProducts() : Observable<Product[]> {
+        return this.http.get<Product[]>(environment.serverURL + '/api/admin/getAllProducts');
+      }
+
+      addNewProduct(product:Product):Observable<Boolean> {
+        return this.http.post<Boolean>(environment.serverURL + '/api/admin/addNewProduct', product);
       }
 }

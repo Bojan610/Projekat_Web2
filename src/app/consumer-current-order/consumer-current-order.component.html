@@ -1,0 +1,45 @@
+<nav class="navbar navbar-expand-lg bg-light"  style="background-color: black">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/consumer-home/{{email}}">HOME</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-link" href="/consumer-home/{{email}}/myprofile">MY PROFILE</a>
+          <a class="nav-link" href="/consumer-home/{{email}}/products">SHOP</a>
+          <a class="nav-link" href="/consumer-home/{{email}}/mycart">MY CART</a>
+          <a class="nav-link" href="/consumer-home/{{email}}/currentOrder">MY CURRENT ORDER</a>
+        </div>
+      </div>
+    </div>
+</nav>
+<div style="background-color: white;margin: 30px;">
+    <div [hidden]="currentOrder.id !== -1">
+        <p>There is no current order currently</p>
+    </div>
+
+    <div [hidden]="currentOrder.id === -1">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Order ID</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{currentOrder.id}}</td>
+                    <td>{{currentOrder.price}} RSD</td>
+                    <td *ngIf="currentOrder.status === 'waiting'" style="color: red;">{{currentOrder.status}}</td>
+                    <td *ngIf="currentOrder.status === 'picked'" style="color: green;">{{currentOrder.status}}</td>
+                    <td>
+                        <button class="btn btn-success">Details</button>
+                    </td>            
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

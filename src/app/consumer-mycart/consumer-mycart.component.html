@@ -1,0 +1,61 @@
+<nav class="navbar navbar-expand-lg bg-light"  style="background-color: black">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/consumer-home/{{email}}">HOME</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-link" href="/consumer-home/{{email}}/myprofile">MY PROFILE</a>
+          <a class="nav-link" href="/consumer-home/{{email}}/products">SHOP</a>
+          <a class="nav-link" href="/consumer-home/{{email}}/mycart">MY CART</a>
+          <a class="nav-link" href="/consumer-home/{{email}}/currentOrder">MY CURRENT ORDER</a>
+        </div>
+      </div>
+    </div>
+</nav>
+<div style="background-color: white;margin: 30px;">
+    <div [hidden]="myProducts.length !== 0">
+        <p>There is no products in your cart currently</p>
+    </div>
+
+    <div [hidden]="myProducts.length === 0">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Product name</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Ingredients</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of myProducts">
+                    <td>{{item.productName}}</td>
+                    <td>{{item.price}} RSD</td>
+                    <td>{{item.ingredients}}</td>   
+                    <td>
+                        <button class="btn btn-success" style="background-color: red;" (click)="cancelItem(item)">Cancel item</button>
+                    </td>            
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div style="background-color: white;margin: 30px;padding: 10px;" [hidden]="myProducts.length === 0">Delivery service: {{deliveryService}} RSD</div>
+<div style="background-color: silver;margin: 30px;padding: 10px;font-size: 25px;color: red;" [hidden]="myProducts.length === 0">Total: {{totalAmount}} RSD</div>
+<form [formGroup]="orderForm" class="mb-4" autocomplete="off" style="margin: 30px;" [hidden]="myProducts.length === 0">
+    <div class="form-group">
+      <label style="color: white;">Address</label>
+      <input class="form-control" formControlName="address" >
+    </div>
+    <div class="form-group">
+      <label style="color: white;">Comment</label>
+      <input type="text" class="form-control" formControlName="comment">
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-8 offset-md-2">
+        <button type="submit" class="btn btn-lg btn-block" (click)="orderClick()" [disabled]="!orderForm.valid">Order</button>
+      </div>
+    </div>
+  </form>

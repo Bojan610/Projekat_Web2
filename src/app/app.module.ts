@@ -20,6 +20,10 @@ import { DelivererService } from './Services/deliverer.service';
 import { AdminDeliverersComponent } from './admin-deliverers/admin-deliverers.component';
 import { AdminService } from './Services/admin.service';
 import { AdminProductsComponent } from './admin-products/admin-products.component';
+import { ConsumerProductsComponent } from './consumer-products/consumer-products.component';
+import { ConsumerService } from './Services/consumer.service';
+import { ConsumerMycartComponent } from './consumer-mycart/consumer-mycart.component';
+import { ConsumerCurrentOrderComponent } from './consumer-current-order/consumer-current-order.component';
 
 
 export function tokenGetter() {
@@ -37,7 +41,10 @@ export function tokenGetter() {
     ConsumerHomeComponent,
     MyprofileComponent,
     AdminDeliverersComponent,
-    AdminProductsComponent
+    AdminProductsComponent,
+    ConsumerProductsComponent,
+    ConsumerMycartComponent,
+    ConsumerCurrentOrderComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +64,8 @@ export function tokenGetter() {
   providers: [
     UserService,
     DelivererService,
-    AdminService
+    AdminService,
+    ConsumerService
   ],
   bootstrap: [AppComponent]
 })

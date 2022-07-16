@@ -1,17 +1,30 @@
-<body class="homepage">
-    <nav class="navbar navbar-expand-lg bg-light"  style="background-color: black">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="/consumer-home/{{email}}">Home</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-              <a class="nav-link" href="/consumer-home/{{email}}/myprofile">My profile</a>
-              <a class="nav-link" href="#">Pricing</a>
-              <a class="nav-link" href="#">Disabled</a>
-            </div>
-          </div>
-        </div>
-      </nav>
-</body>
+<div class="content" role="main">
+  <h3 style="color: white;">Welcome back!</h3>
+  <div class="card-container">
+    <a class="card" href="/consumer-home/{{email}}/myprofile">
+      <svg class="material-icons" width="24" height="24"></svg>
+      <span>MY PROFILE</span>
+      <svg class="material-icons" width="24" height="24" ><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+    </a>
+
+    <a class="card" href="/consumer-home/{{email}}/products">
+      <svg class="material-icons" width="24" height="24"></svg>
+      <span>SHOP</span>
+      <svg class="material-icons" width="24" height="24" ><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+    </a>
+
+    <a class="card" href="/consumer-home/{{email}}/mycart">
+      <svg class="material-icons" width="24" height="24"></svg>
+      <span>MY CART</span>
+      <svg class="material-icons" width="24" height="24" ><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+    </a>
+    <a class="card" href="/consumer-home/{{email}}/currentOrder">
+      <svg class="material-icons" width="24" height="24"></svg>
+      <span>MY CURRENT ORDER</span>
+      <svg class="material-icons" width="24" height="24" ><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+    </a>
+  </div>
+</div>
+
+
+<p style="margin-left: 30px;margin-top: 20px; color: white; font-size: 25px;">{{timeDisplay}}</p> 
