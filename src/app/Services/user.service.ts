@@ -1,5 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { SocialUser } from "angularx-social-login";
 import { Observable } from "rxjs/internal/Observable";
 import { environment } from "src/environments/environment";
 import { Login } from "../Models/login.model";
@@ -33,4 +34,7 @@ export class UserService {
     return this.http.get<UserDisplay>(environment.serverURL + '/api/users/' + email);
   }
   
+  socialLogIn(formData:SocialUser) :Observable<Token>{
+    return this.http.post<Token>(environment.serverURL + '/api/users/socialLogin', formData);
+  }
 }

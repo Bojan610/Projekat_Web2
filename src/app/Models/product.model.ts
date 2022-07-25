@@ -1,5 +1,5 @@
 export class Product{
-    id:number = -1;
+    id:any;
     productName:string = "";
     price:number = 0;
     ingredients:string = "";

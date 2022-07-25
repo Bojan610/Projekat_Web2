@@ -6,6 +6,7 @@ export class Registration{
     birth: Date = new Date();
     address: string = "";
     userKind: string = "";
+    image: string = "";
     password:string = "";
     passwordConfirm:string = "";   
 }

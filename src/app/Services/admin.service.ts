@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs/internal/Observable";
 import { environment } from "src/environments/environment";
 import { DelivererDisplay } from "../Models/deliverer-display.model";
+import { Order } from "../Models/order.model";
 import { Product } from "../Models/product.model";
 import { RetString } from "../Models/retString.model";
 
@@ -40,5 +41,9 @@ export class AdminService {
 
       addNewProduct(product:Product):Observable<Boolean> {
         return this.http.post<Boolean>(environment.serverURL + '/api/admin/addNewProduct', product);
+      }
+
+      getAllOrders() : Observable<Order[]> {
+        return this.http.get<Order[]>(environment.serverURL + '/api/admin/getOrders');
       }
 }

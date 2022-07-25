@@ -1,6 +1,6 @@
 import { Product } from "./product.model";
 
-export class Order{
+export class PickupOrder{
     id:any;
     products:Product[] = [];
     email:string = "";
@@ -8,4 +8,5 @@ export class Order{
     comment:string = "";
     price:number = 0;
     status:string = "";
+    emailDeliverer:string = "";
 }

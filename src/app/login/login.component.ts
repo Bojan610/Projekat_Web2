@@ -1,10 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-
 import { Login } from '../Models/login.model';
 import { Token } from '../Models/token.model';
 import { UserService } from '../Services/user.service';
+import { FacebookLoginProvider, SocialAuthService, SocialUser } from "angularx-social-login";
+import { GoogleLoginProvider } from "angularx-social-login";
+import { Registration } from '../Models/registration.model';
 
 @Component({
   selector: 'app-login',
@@ -16,11 +19,15 @@ export class LoginComponent implements OnInit {
     email : new FormControl("", [Validators.required, Validators.email]),
     password : new FormControl("", [Validators.required, Validators.minLength(4)]),
   });
+  user: SocialUser = new SocialUser;
 
-  constructor(private service: UserService, private router: Router) { }
+  constructor(private service: UserService, private router: Router, private authService: SocialAuthService) { }
 
   ngOnInit() {
-    
+    this.authService.authState.subscribe((user) => {
+      this.user = user;
+      console.log(this.user);
+    });
   }
   
   onSubmit() {
@@ -56,6 +63,24 @@ export class LoginComponent implements OnInit {
     );
   }
  
+  LogInWithGoogle() {
+    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then(socialusers => {
+      this.service.socialLogIn(this.user).subscribe(
+        (data : Token) => {
+          if (data != null)
+          {
+              localStorage.setItem('token', data.token);
+              this.router.navigateByUrl('/consumer-home/' + this.user.email);        
+          }
+          else
+            window.alert("Authentication failed.");
+        },
+        error => {
+            window.alert("Authentication failed.");
+        }
+      );
+    });
+  }
 
 }
 

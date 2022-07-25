@@ -16,72 +16,83 @@
     </div>
 </nav>
 <div style="background-color: white;margin: 30px;">
-    <div [hidden]="currentOrder.id === -1">
-      <p>You already have an active order</p>
-    </div>
-    <div [hidden]="products.length !== 0">
-      <div [hidden]="currentOrder.id !== -1">
-        <p>There is no products currently</p>
-      </div>
+    <div [hidden]="orders.length !== 0">
+        <p>There is no previous orders currently</p>
     </div>
 
-    <div [hidden]="products.length === 0">
-      <div [hidden]="currentOrder.id !== -1">
+    <div [hidden]="orders.length === 0">
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th scope="col">Product name</th>
+                    <th scope="col">Order ID</th>
                     <th scope="col">Price</th>
-                    <th scope="col">Ingredients</th>
+                    <th scope="col">Status</th>
                     <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let item of products">
-                    <td>{{item.productName}}</td>
+                <tr *ngFor="let item of orders">
+                    <td>{{item.id}}</td>
                     <td>{{item.price}} RSD</td>
-                    <td>{{item.ingredients}}</td>   
+                    <td >{{item.status}}</td>
                     <td>
-                        <button class="btn btn-success" style="background-color: slategrey;" data-toggle="modal" data-target="#addToCart" (click)="modalAddToCart(item)">Add to cart</button>
+                        <button class="btn btn-success" style="background-color: slategrey;" data-toggle="modal" data-target="#order" (click)="Details(item)">Details</button>
                     </td>            
                 </tr>
             </tbody>
         </table>
     </div>
-  </div>
 </div>
-<!--MODAL FOR ADD TO CART PRODUCT-->
-<div class="modal fade" id="addToCart" tabindex="-1" role="dialog" aria-labelledby="addToCart" aria-hidden="true">
+<!--MODAL FOR PREVIOUS ORDER DETAILS-->
+<div class="modal fade" id="order" tabindex="-1" role="dialog" aria-labelledby="order" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="studentEdit">Adding product to cart</h5>
+          <h5 class="modal-title" id="studentEdit">Order details</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
           <div class="tab-content">
-            <form [formGroup]="addToCartForm" class="form">
+            <form class="form">
                 <div class="form-group row">
-                    <label for="lat" class="col-sm-4 col-form-label">Product </label>
+                    <label for="lat" class="col-sm-4 col-form-label">Order ID</label>
                     <div class="col-sm-8">
-                        {{product.productName}}
+                        {{orderDetails.id}}
                     </div>
                 </div>  
                 <div class="form-group row">
-                    <label for="lat" class="col-sm-4 col-form-label">Quantity </label>
+                    <label for="lat" class="col-sm-4 col-form-label">PRICE</label>
                     <div class="col-sm-8">
-                        <input formControlName="quantity" type="number" class="form-control" id="quantity" placeholder="Enter the quantity of product" min="1">
+                        {{orderDetails.price}}
                     </div>
-                </div>             
+                </div>  
+                <div class="form-group row">
+                    <label for="lat" class="col-sm-4 col-form-label">STATUS</label>
+                    <div class="col-sm-8">
+                        {{orderDetails.status}}
+                    </div>
+                </div>  
+                <div class="form-group row">
+                    <label for="lat" class="col-sm-4 col-form-label">ADDRESS</label>
+                    <div class="col-sm-8">
+                        {{orderDetails.address}}
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="lat" class="col-sm-4 col-form-label">COMMENT</label>
+                    <div class="col-sm-8">
+                        {{orderDetails.comment}}
+                    </div>
+                </div>            
             </form>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-            <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="addToCart()" [disabled]="!addToCartForm.valid">Finish</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
           </div>
         </div>
       </div>
     </div>
 </div>
+

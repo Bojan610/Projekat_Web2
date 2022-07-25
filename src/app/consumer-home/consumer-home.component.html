@@ -1,3 +1,4 @@
+<button class="btn btn-success" style="background-color: red;margin-left: 30px; margin-top: 20px;" (click)="logOut()">Log out</button>
 <div class="content" role="main">
   <h3 style="color: white;">Welcome back!</h3>
   <div class="card-container">
@@ -23,8 +24,10 @@
       <span>MY CURRENT ORDER</span>
       <svg class="material-icons" width="24" height="24" ><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
     </a>
+    <a class="card" href="/consumer-home/{{email}}/previousOrders">
+      <svg class="material-icons" width="24" height="24"></svg>
+      <span>MY PREVIOUS ORDERS</span>
+      <svg class="material-icons" width="24" height="24" ><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+    </a>
   </div>
 </div>
-
-
-<p style="margin-left: 30px;margin-top: 20px; color: white; font-size: 25px;">{{timeDisplay}}</p> 

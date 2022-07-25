@@ -1,26 +1,25 @@
 <nav class="navbar navbar-expand-lg bg-light"  style="background-color: black">
     <div class="container-fluid">
-      <a class="navbar-brand" href="/consumer-home/{{email}}">HOME</a>
+      <a class="navbar-brand" href="/admin-home/{{email}}">Home</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <a class="nav-link" href="/consumer-home/{{email}}/myprofile">MY PROFILE</a>
-          <a class="nav-link" href="/consumer-home/{{email}}/products">SHOP</a>
-          <a class="nav-link" href="/consumer-home/{{email}}/mycart">MY CART</a>
-          <a class="nav-link" href="/consumer-home/{{email}}/currentOrder">MY CURRENT ORDER</a>
-          <a class="nav-link" href="/consumer-home/{{email}}/previousOrders">MY PREVIOUS ORDERS</a>
+          <a class="nav-link" href="/admin-home/{{email}}/myprofile">My profile</a>
+          <a class="nav-link" href="/admin-home/{{email}}/deliverers">Deliverers</a>
+          <a class="nav-link" href="/admin-home/{{email}}/products">Products</a>
+          <a class="nav-link" href="/admin-home/{{email}}/allOrders">ALL ORDERS</a>
         </div>
       </div>
     </div>
 </nav>
-<div style="background-color: white;margin: 30px;">
-    <div [hidden]="currentOrder.id !== -1">
-        <p>There is no current order currently</p>
+  <div style="background-color: white;margin: 30px;">
+    <div [hidden]="orders.length !== 0" >
+        <p>There is no orders currently</p>    
     </div>
-
-    <div [hidden]="currentOrder.id === -1">
+   
+    <div [hidden]="orders.length === 0">
         <table class="table table-hover">
             <thead>
                 <tr>
@@ -31,22 +30,23 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>{{currentOrder.id}}</td>
-                    <td>{{currentOrder.price}} RSD</td>
-                    <td *ngIf="currentOrder.status === 'waiting'" style="color: red;">{{currentOrder.status}}</td>
-                    <td *ngIf="currentOrder.status === 'picked up'" style="color: green;">{{currentOrder.status}}</td>
+                <tr *ngFor="let item of orders">
+                    <td>{{item.id}}</td>
+                    <td>{{item.price}} RSD</td>
+                    <td *ngIf="item.status === 'waiting'" style="color: red;">{{item.status}}</td>
+                    <td *ngIf="item.status === 'picked up'" style="color: green;">{{item.status}}</td> 
+                    <td *ngIf="item.status === 'finished'" style="color: black;">{{item.status}}</td> 
                     <td>
-                        <button class="btn btn-success" data-toggle="modal" data-target="#currentOrder">Details</button>
+                        <button class="btn btn-success" style="background-color: slategrey;" data-toggle="modal" data-target="#orderDetails" (click)="orderDetails(item)">Details</button>
                     </td>            
                 </tr>
             </tbody>
         </table>
-        <p [hidden]="currentOrder.status === 'waiting'" style="margin-left: 30px;margin-top: 20px; font-size: 25px;">{{time.minutes}}:{{time.seconds}}</p> 
     </div>
-</div>
+  </div>
+
 <!--MODAL FOR CURRENT ORDER-->
-<div class="modal fade" id="currentOrder" tabindex="-1" role="dialog" aria-labelledby="currentOrder" aria-hidden="true">
+<div class="modal fade" id="orderDetails" tabindex="-1" role="dialog" aria-labelledby="orderDetails" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -61,31 +61,31 @@
                 <div class="form-group row">
                     <label for="lat" class="col-sm-4 col-form-label">Order ID</label>
                     <div class="col-sm-8">
-                        {{currentOrder.id}}
+                        {{orderModal.id}}
                     </div>
                 </div>  
                 <div class="form-group row">
                     <label for="lat" class="col-sm-4 col-form-label">PRICE</label>
                     <div class="col-sm-8">
-                        {{currentOrder.price}}
+                        {{orderModal.price}}
                     </div>
                 </div>  
                 <div class="form-group row">
                     <label for="lat" class="col-sm-4 col-form-label">STATUS</label>
                     <div class="col-sm-8">
-                        {{currentOrder.status}}
+                        {{orderModal.status}}
                     </div>
                 </div>  
                 <div class="form-group row">
                     <label for="lat" class="col-sm-4 col-form-label">ADDRESS</label>
                     <div class="col-sm-8">
-                        {{currentOrder.address}}
+                        {{orderModal.address}}
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="lat" class="col-sm-4 col-form-label">COMMENT</label>
                     <div class="col-sm-8">
-                        {{currentOrder.comment}}
+                        {{orderModal.comment}}
                     </div>
                 </div>            
             </form>

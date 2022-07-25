@@ -1,16 +1,15 @@
 <nav class="navbar navbar-expand-lg bg-light"  style="background-color: black">
     <div class="container-fluid">
-      <a class="navbar-brand" href="/consumer-home/{{email}}">HOME</a>
+      <a class="navbar-brand" href="/deliverer-home/{{email}}">HOME</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <a class="nav-link" href="/consumer-home/{{email}}/myprofile">MY PROFILE</a>
-          <a class="nav-link" href="/consumer-home/{{email}}/products">SHOP</a>
-          <a class="nav-link" href="/consumer-home/{{email}}/mycart">MY CART</a>
-          <a class="nav-link" href="/consumer-home/{{email}}/currentOrder">MY CURRENT ORDER</a>
-          <a class="nav-link" href="/consumer-home/{{email}}/previousOrders">MY PREVIOUS ORDERS</a>
+          <a class="nav-link" href="/deliverer-home/{{email}}/myprofile">MY PROFILE</a>
+          <a class="nav-link" href="/deliverer-home/{{email}}/orders">ORDERS</a>
+          <a class="nav-link" href="/deliverer-home/{{email}}/currentOrder">MY CURRENT ORDER</a>
+          <a class="nav-link" href="/deliverer-home/{{email}}/previousOrders">MY PREVIOUS ORDERS</a>
         </div>
       </div>
     </div>
@@ -41,8 +40,8 @@
                     </td>            
                 </tr>
             </tbody>
-        </table>
-        <p [hidden]="currentOrder.status === 'waiting'" style="margin-left: 30px;margin-top: 20px; font-size: 25px;">{{time.minutes}}:{{time.seconds}}</p> 
+        </table>     
+        <p style="margin-left: 30px;margin-top: 20px; font-size: 25px;">{{time.minutes}}:{{time.seconds}}</p> 
     </div>
 </div>
 <!--MODAL FOR CURRENT ORDER-->
@@ -97,3 +96,4 @@
       </div>
     </div>
 </div>
+

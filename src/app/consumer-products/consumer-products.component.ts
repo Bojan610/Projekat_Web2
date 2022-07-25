@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AddToCartModel } from '../Models/addToCart.model';
+import { Order } from '../Models/order.model';
 import { Product } from '../Models/product.model';
 import { ConsumerService } from '../Services/consumer.service';
 
@@ -14,6 +15,7 @@ export class ConsumerProductsComponent implements OnInit {
   products : Product[] = [];
   email: string = "";
   product : Product = new Product();
+  currentOrder: Order = new Order; 
   
   addToCartForm = new FormGroup({
     quantity : new FormControl("", Validators.required)
@@ -21,6 +23,15 @@ export class ConsumerProductsComponent implements OnInit {
 
   constructor(private service: ConsumerService, private router: Router, private route:ActivatedRoute) { 
     route.params.subscribe(params => { this.email = params['email']; });
+
+    this.service.getCurrentOrder(this.email).subscribe(
+      (data : Order) => {
+        this.currentOrder = data;
+      },
+      error => {
+          window.alert('Something went wrong.');
+      }
+    );
 
     this.service.getAllProducts().subscribe(
       (data : Product[]) => {

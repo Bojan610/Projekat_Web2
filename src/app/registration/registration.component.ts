@@ -21,6 +21,7 @@ export class RegistrationComponent implements OnInit {
     Birth: new FormControl('', Validators.required),
     Address: new FormControl('', Validators.required),
     UserKind: new FormControl('', Validators.required),
+    Image: new FormControl('', ),
     Password: new FormControl('', [Validators.required, Validators.minLength(4)]),
     PasswordConfirm: new FormControl('', [Validators.required, Validators.minLength(4)]),
   });
@@ -40,6 +41,7 @@ export class RegistrationComponent implements OnInit {
     reg.birth = this.registrationForm.controls['Birth'].value;
     reg.address = this.registrationForm.controls['Address'].value;
     reg.userKind = this.registrationForm.controls['UserKind'].value;
+    reg.image = this.registrationForm.controls['Image'].value;
     reg.password = this.registrationForm.controls['Password'].value;
     reg.passwordConfirm = this.registrationForm.controls['PasswordConfirm'].value;
 

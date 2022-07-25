@@ -5,6 +5,7 @@ import { environment } from "src/environments/environment";
 import { AddToCartModel } from "../Models/addToCart.model";
 import { Order } from "../Models/order.model";
 import { Product } from "../Models/product.model";
+import { StopWatch } from "../Models/stopwatch.model";
 
 @Injectable({
     providedIn: 'root'
@@ -38,4 +39,11 @@ import { Product } from "../Models/product.model";
         return this.http.get<Order>(environment.serverURL + '/api/consumer/currentOrder/' + email);
       }
 
+      getTime(id:number) : Observable<StopWatch> {
+        return this.http.get<StopWatch>(environment.serverURL + '/api/consumer/getTime/' + id);
+      }
+
+      getPreviousOrders(email:string) : Observable<Order[]> {
+        return this.http.get<Order[]>(environment.serverURL + '/api/consumer/getPreviousOrders/' + email);
+      }
 }

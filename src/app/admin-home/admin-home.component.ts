@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../Services/user.service';
 
 @Component({
@@ -10,13 +10,17 @@ import { UserService } from '../Services/user.service';
 export class AdminHomeComponent implements OnInit {
   email: string = "";
 
-  constructor(private route:ActivatedRoute) {
+  constructor(private route:ActivatedRoute, private router: Router) {
     route.params.subscribe(params => { this.email = params['email']; });
    }
 
   ngOnInit(): void {
-   
-
   }
+
+  logOut(): void {
+    localStorage.removeItem('token');
+    this.router.navigateByUrl('/user/login');
+  }
+
 
 }

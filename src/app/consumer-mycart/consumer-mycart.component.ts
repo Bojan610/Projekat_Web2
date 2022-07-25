@@ -65,13 +65,12 @@ export class ConsumerMycartComponent implements OnInit {
   orderClick(): void {
     let order:Order = new Order();
     for (let i = 0; i < this.myProducts.length; i++) {
-      order.products.push(this.myProducts[i].id);
+      order.products.push(this.myProducts[i]);
     }
     order.price = this.totalAmount;
     order.email = this.email;
     order.address =  this.orderForm.controls['address'].value;
     order.comment = this.orderForm.controls['comment'].value;
-    order.id = 0;
     order.status = "waiting";
 
     this.service.OrderProducts(order).subscribe(

@@ -30,14 +30,19 @@ export class MyprofileComponent implements OnInit {
 
     this.service.getUserByEmail(this.email).subscribe(
       (data : UserDisplay) => {
-        this.user = data;
+        if (data != null)
+        {
+          this.user = data;
 
-        if (this.user.userKind == "admin")
-          this.redirectString = '/admin-home/' + this.email;
-        else if (this.user.userKind == "deliverer")
-          this.redirectString = '/deliverer-home/' + this.email;
-        else if (this.user.userKind == "consumer")
-          this.redirectString = '/consumer-home/' + this.email;
+          if (this.user.userKind == "admin")
+            this.redirectString = '/admin-home/' + this.email;
+          else if (this.user.userKind == "deliverer")
+            this.redirectString = '/deliverer-home/' + this.email;
+          else if (this.user.userKind == "consumer")
+            this.redirectString = '/consumer-home/' + this.email;
+        }
+        else
+          window.alert('Something went wrong.');
       },
       error => {
           window.alert('Something went wrong.');

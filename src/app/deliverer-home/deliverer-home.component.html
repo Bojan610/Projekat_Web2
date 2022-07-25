@@ -1,3 +1,4 @@
+<button class="btn btn-success" style="background-color: red;margin-left: 30px; margin-top: 20px;" (click)="logOut()">Log out</button>
 <div [hidden]="verified !== 'denied'">
   <p style="color: red; padding-left: 30px; padding-top: 20px; font-size: 20px;">Sorry :( . Your registration request is denied.</p>
 </div>
@@ -11,6 +12,21 @@
     <a class="card" href="/deliverer-home/{{email}}/myprofile">
       <svg class="material-icons" width="24" height="24"></svg>
       <span>MY PROFILE</span>
+      <svg class="material-icons" width="24" height="24" ><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+    </a>
+    <a class="card" href="/deliverer-home/{{email}}/orders">
+      <svg class="material-icons" width="24" height="24"></svg>
+      <span>ORDERS</span>
+      <svg class="material-icons" width="24" height="24" ><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+    </a>
+    <a class="card" href="/deliverer-home/{{email}}/currentOrder">
+      <svg class="material-icons" width="24" height="24"></svg>
+      <span>MY CURRENT ORDER</span>
+      <svg class="material-icons" width="24" height="24" ><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+    </a>
+    <a class="card" href="/deliverer-home/{{email}}/previousOrders">
+      <svg class="material-icons" width="24" height="24"></svg>
+      <span>MY PREVIOUS ORDERS</span>
       <svg class="material-icons" width="24" height="24" ><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
     </a>
 

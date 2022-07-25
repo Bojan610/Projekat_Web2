@@ -1,3 +1,4 @@
+<button class="btn btn-success" style="background-color: red;margin-left: 30px; margin-top: 20px;" (click)="logOut()">Log out</button>
 <div class="content" role="main">
   <h3 style="color: white;">Welcome back!</h3>
   <div class="card-container">
@@ -16,6 +17,11 @@
     <a class="card" href="/admin-home/{{email}}/products">
       <svg class="material-icons" width="24" height="24"></svg>
       <span>PRODUCTS</span>
+      <svg class="material-icons" width="24" height="24" ><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+    </a>
+    <a class="card" href="/admin-home/{{email}}/allOrders">
+      <svg class="material-icons" width="24" height="24"></svg>
+      <span>ALL ORDERS</span>
       <svg class="material-icons" width="24" height="24" ><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
     </a>
   </div>
