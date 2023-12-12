@@ -26,16 +26,18 @@ import { ConsumerMycartComponent } from './consumer-mycart/consumer-mycart.compo
 import { ConsumerCurrentOrderComponent } from './consumer-current-order/consumer-current-order.component';
 import { AuthInterceptor } from './auth/auth.interceptor';
 
-import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
+import { SocialLoginModule, SocialAuthServiceConfig } from '@abacritt/angularx-social-login';
 import {
   GoogleLoginProvider,
   FacebookLoginProvider
-} from 'angularx-social-login';
+} from '@abacritt/angularx-social-login';
 import { DelivererOrdersComponent } from './deliverer-orders/deliverer-orders.component';
 import { DelivererCurrentOrderComponent } from './deliverer-current-order/deliverer-current-order.component';
 import { ConsumerPreviousOrdersComponent } from './consumer-previous-orders/consumer-previous-orders.component';
 import { DelivererPreviousOrdersComponent } from './deliverer-previous-orders/deliverer-previous-orders.component';
 import { AdminOrdersComponent } from './admin-orders/admin-orders.component';
+
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 
 export function tokenGetter() {
@@ -75,7 +77,7 @@ export function tokenGetter() {
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
-        allowedDomains:environment.allowedDomains
+        allowedDomains: [environment.allowedDomains_1.toString(), environment.allowedDomains_2.toString()]
     }
   }),
   ],
@@ -107,7 +109,8 @@ export function tokenGetter() {
         }
       } as SocialAuthServiceConfig,
     },
+    {provide: LocationStrategy, useClass: HashLocationStrategy},
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

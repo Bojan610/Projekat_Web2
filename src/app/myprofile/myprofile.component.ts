@@ -14,6 +14,8 @@ export class MyprofileComponent implements OnInit {
   email: string = "";
   user: UserDisplay = new UserDisplay;
   redirectString: string = "";
+  imageToShow:any;
+  currentFile:any;
 
   myprofileForm = new FormGroup({
     Username: new FormControl('', Validators.required),
@@ -23,6 +25,7 @@ export class MyprofileComponent implements OnInit {
     Address: new FormControl('', Validators.required),
     Password: new FormControl('', [Validators.required, Validators.minLength(4)]),
     PasswordConfirm: new FormControl('', [Validators.required, Validators.minLength(4)]),
+    Image: new FormControl('', Validators.required),
   });
 
   constructor(private service: UserService, private route:ActivatedRoute, private router: Router) { 
@@ -63,6 +66,7 @@ export class MyprofileComponent implements OnInit {
     reg.address = this.myprofileForm.controls['Address'].value;
     reg.password = this.myprofileForm.controls['Password'].value;
     reg.passwordConfirm = this.myprofileForm.controls['PasswordConfirm'].value;
+    reg.image = this.imageToShow;
 
     this.service.updateUser(reg).subscribe(
       (data : Boolean) => {   
@@ -79,5 +83,22 @@ export class MyprofileComponent implements OnInit {
 
   cancel(): void {   
       this.router.navigateByUrl(this.redirectString);  
+  }
+
+  onPictureChosen(event:any):void{
+    if (event.target.files) {
+      const file: File | null = event.target.files.item(0);
+      if (file) {
+        this.currentFile = file;
+        console.log(file);
+        var promise = file.arrayBuffer();
+        const reader = new FileReader();
+        reader.onload = (e: any) => {
+          this.imageToShow = reader.result as string;
+          console.log(this.imageToShow)
+        };
+        reader.readAsDataURL(this.currentFile);
+      }
+    }
   }
 }

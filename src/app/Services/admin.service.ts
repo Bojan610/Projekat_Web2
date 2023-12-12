@@ -16,34 +16,34 @@ export class AdminService {
     constructor( private http: HttpClient) { }
 
     getProcessingDeliverers() : Observable<DelivererDisplay[]> {
-        return this.http.get<DelivererDisplay[]>(environment.serverURL + '/api/admin/getProcessing');
+        return this.http.get<DelivererDisplay[]>(environment.serverURL_1 + '/api/admin/getProcessing');
       }
 
       getDeniedDeliverers() : Observable<DelivererDisplay[]> {
-        return this.http.get<DelivererDisplay[]>(environment.serverURL + '/api/admin/getDenied');
+        return this.http.get<DelivererDisplay[]>(environment.serverURL_1 + '/api/admin/getDenied');
       }
 
       getAcceptedDeliverers() : Observable<DelivererDisplay[]> {
-        return this.http.get<DelivererDisplay[]>(environment.serverURL + '/api/admin/getAccepted');
+        return this.http.get<DelivererDisplay[]>(environment.serverURL_1 + '/api/admin/getAccepted');
       }
 
       acceptDeliverer(param:RetString):Observable<Boolean> {
-        return this.http.post<Boolean>(environment.serverURL + '/api/admin/acceptDeliverer', param);
+        return this.http.post<Boolean>(environment.serverURL_1 + '/api/admin/acceptDeliverer', param);
       }
 
       declineDeliverer(param:RetString):Observable<Boolean> {
-        return this.http.post<Boolean>(environment.serverURL + '/api/admin/declineDeliverer', param);
+        return this.http.post<Boolean>(environment.serverURL_1 + '/api/admin/declineDeliverer', param);
       }
 
       getAllProducts() : Observable<Product[]> {
-        return this.http.get<Product[]>(environment.serverURL + '/api/admin/getAllProducts');
+        return this.http.get<Product[]>(environment.serverURL_2 + '/api/deliverer/getAllProducts');
       }
 
       addNewProduct(product:Product):Observable<Boolean> {
-        return this.http.post<Boolean>(environment.serverURL + '/api/admin/addNewProduct', product);
+        return this.http.post<Boolean>(environment.serverURL_2 + '/api/deliverer/addNewProduct', product);
       }
 
       getAllOrders() : Observable<Order[]> {
-        return this.http.get<Order[]>(environment.serverURL + '/api/admin/getOrders');
+        return this.http.get<Order[]>(environment.serverURL_2 + '/api/deliverer/getOrdersAdmin');
       }
 }

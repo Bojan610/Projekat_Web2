@@ -1,0 +1,43 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    app: frontendapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontendapp
+  template:
+    metadata:
+      labels:
+        env: prod
+        app: frontendapp
+        app.kubernetes.io/name: frontendapp     
+    spec:
+      containers:
+        - name: frontendapp
+          image: bojan610/frontend-app-repository:v4.1
+          ports:
+            - containerPort: 80
+          env:
+            - name: ANGULAR_URLS
+              value: http://8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontendapp-service
+spec:
+  selector:
+    app: frontendapp
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      # Port accessible inside cluster
+      port: 8181
+      # Port to forward to inside the pod
+      targetPort: 80
+  

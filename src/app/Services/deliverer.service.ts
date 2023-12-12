@@ -16,26 +16,30 @@ export class DelivererService {
     constructor( private http: HttpClient) { }
 
     verifyCheck(email:string) :Observable<RetString> {
-        return this.http.get<RetString>(environment.serverURL + '/api/deliverer/verifyCheck/' + email);
+        return this.http.get<RetString>(environment.serverURL_1 + '/api/users/verifyCheck/' + email);
       }
 
       getAllOrders() : Observable<Order[]> {
-        return this.http.get<Order[]>(environment.serverURL + '/api/deliverer/getOrders');
+        return this.http.get<Order[]>(environment.serverURL_2 + '/api/deliverer/getOrders');
       }
 
       PickUpOrder(order:PickupOrder):Observable<Boolean> {
-        return this.http.post<Boolean>(environment.serverURL + '/api/deliverer/pickUpOrder', order);
+        return this.http.post<Boolean>(environment.serverURL_2 + '/api/deliverer/pickUpOrder', order);
       }
 
       getCurrentOrder(email:string) : Observable<Order> {
-        return this.http.get<Order>(environment.serverURL + '/api/deliverer/currentOrder/' + email);
+        return this.http.get<Order>(environment.serverURL_2 + '/api/deliverer/currentOrder/' + email);
       }
 
       getTime(id:number) : Observable<StopWatch> {
-        return this.http.get<StopWatch>(environment.serverURL + '/api/deliverer/getTime/' + id);
+        return this.http.get<StopWatch>(environment.serverURL_2 + '/api/deliverer/getTime/' + id);
       }
 
       getPreviousOrders(email:string) : Observable<Order[]> {
-        return this.http.get<Order[]>(environment.serverURL + '/api/deliverer/getPreviousOrders/' + email);
+        return this.http.get<Order[]>(environment.serverURL_2 + '/api/deliverer/getPreviousOrders/' + email);
+      }
+
+      ChangeOrderStatus(param:RetString):Observable<Boolean> {
+        return this.http.post<Boolean>(environment.serverURL_2 + '/api/deliverer/changeOrderStatus', param);
       }
 }

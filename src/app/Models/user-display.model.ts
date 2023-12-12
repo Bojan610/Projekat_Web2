@@ -6,4 +6,5 @@ export class UserDisplay{
     birth: Date = new Date();
     address: string = "";
     userKind: string = "";
+    image: string = "";
 }

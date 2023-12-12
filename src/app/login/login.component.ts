@@ -5,8 +5,8 @@ import { Router } from '@angular/router';
 import { Login } from '../Models/login.model';
 import { Token } from '../Models/token.model';
 import { UserService } from '../Services/user.service';
-import { FacebookLoginProvider, SocialAuthService, SocialUser } from "angularx-social-login";
-import { GoogleLoginProvider } from "angularx-social-login";
+import { FacebookLoginProvider, SocialAuthService, SocialUser } from "@abacritt/angularx-social-login";
+import { GoogleLoginProvider } from "@abacritt/angularx-social-login";
 import { Registration } from '../Models/registration.model';
 
 @Component({

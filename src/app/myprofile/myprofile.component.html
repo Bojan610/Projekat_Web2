@@ -39,6 +39,10 @@
             <label for="validationDefault05" class="form-label">Confirm password</label>
             <input type="password" class="form-control" formControlName="PasswordConfirm">
           </div>
+          <div>     
+            <img src= "{{user.image}}" height="150" width="200" style="margin-top: 40px;margin-left: 20px;">
+            <input style="color: white;margin-left: 20px;" formControlName="Image" type="file" id="img" name="img" accept="image/*" (change)="onPictureChosen($event)" value="{{user.image}}">
+        </div>
         
         <div class="col-12" style="margin-left: 480px; margin-top: 40px;">
           <button class="btn btn-primary" type="submit" style="border-color: white;" (click)="onSubmit()" [disabled]="!myprofileForm.valid">Save changes</button>

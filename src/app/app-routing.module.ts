@@ -32,7 +32,7 @@ const routes: Routes = [
   path: "admin-home/:email",
     children: [
       { path: "", component: AdminHomeComponent, canActivate:[AuthGuard]},
-      { path: "myprofile", component: MyprofileComponent, canActivate:[AuthGuard] }, 
+      { path: "myprofile", component: MyprofileComponent, canActivate:[AuthGuard], }, 
       { path: "deliverers", component: AdminDeliverersComponent, canActivate:[AuthGuard] },
       { path: "products", component: AdminProductsComponent, canActivate:[AuthGuard] },  
       { path: "allOrders", component: AdminOrdersComponent, canActivate:[AuthGuard] }            
@@ -62,7 +62,7 @@ const routes: Routes = [
   ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {useHash: true})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

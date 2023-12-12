@@ -12,6 +12,8 @@ import { UserService } from '../Services/user.service';
 })
 
 export class RegistrationComponent implements OnInit {
+  imagePath!: string | ArrayBuffer | null;
+  currentFile!: File;
 
   registrationForm = new FormGroup({
     Username: new FormControl('', Validators.required),
@@ -21,7 +23,7 @@ export class RegistrationComponent implements OnInit {
     Birth: new FormControl('', Validators.required),
     Address: new FormControl('', Validators.required),
     UserKind: new FormControl('', Validators.required),
-    Image: new FormControl('', ),
+    Image: new FormControl('', Validators.required),
     Password: new FormControl('', [Validators.required, Validators.minLength(4)]),
     PasswordConfirm: new FormControl('', [Validators.required, Validators.minLength(4)]),
   });
@@ -45,7 +47,7 @@ export class RegistrationComponent implements OnInit {
     reg.password = this.registrationForm.controls['Password'].value;
     reg.passwordConfirm = this.registrationForm.controls['PasswordConfirm'].value;
 
-    this.service.register(reg).subscribe(
+    this.service.register(reg, this.imagePath?.toString()).subscribe(
       (data : Boolean) => {   
         if (data == true)    
           this.router.navigateByUrl('/user/login');
@@ -58,6 +60,21 @@ export class RegistrationComponent implements OnInit {
     )
   }
   
-  
+  onPictureChosen(event:any):void{
+    if (event.target.files) {
+      const file: File | null = event.target.files.item(0);
+      if (file) {
+        this.currentFile = file;
+        console.log(file);
+        var promise = file.arrayBuffer();
+        const reader = new FileReader();
+        reader.onload = (e: any) => {
+          this.imagePath = reader.result;
+          console.log(this.imagePath)
+        };
+        reader.readAsDataURL(this.currentFile);
+      }
+    }
+  }
 
 }

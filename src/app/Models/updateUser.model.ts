@@ -7,5 +7,5 @@ export class UpdateUser{
     address: string = "";
     password:string = "";
     passwordConfirm:string = "";
-    
+    image:string = "";
 }

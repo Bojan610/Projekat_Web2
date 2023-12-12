@@ -5,6 +5,7 @@ import { environment } from "src/environments/environment";
 import { AddToCartModel } from "../Models/addToCart.model";
 import { Order } from "../Models/order.model";
 import { Product } from "../Models/product.model";
+import { RetString } from "../Models/retString.model";
 import { StopWatch } from "../Models/stopwatch.model";
 
 @Injectable({
@@ -16,34 +17,38 @@ import { StopWatch } from "../Models/stopwatch.model";
     constructor( private http: HttpClient) { }
 
     getAllProducts() : Observable<Product[]> {
-        return this.http.get<Product[]>(environment.serverURL + '/api/consumer/getAllProducts');
+        return this.http.get<Product[]>(environment.serverURL_2 + '/api/consumer/getAllProducts');
       }
 
       addProductToCart(model:AddToCartModel):Observable<Boolean> {
-        return this.http.post<Boolean>(environment.serverURL + '/api/consumer/addProductToCart', model);
+        return this.http.post<Boolean>(environment.serverURL_2 + '/api/consumer/addProductToCart', model);
       }
 
       getProductsFromMyCart(email:string) : Observable<Product[]> {
-        return this.http.get<Product[]>(environment.serverURL + '/api/consumer/getMyProducts/' + email);
+        return this.http.get<Product[]>(environment.serverURL_2 + '/api/consumer/getMyProducts/' + email);
       }
 
       cancelProduct(product:AddToCartModel):Observable<Boolean> {
-        return this.http.post<Boolean>(environment.serverURL + '/api/consumer/cancelProduct', product);
+        return this.http.post<Boolean>(environment.serverURL_2 + '/api/consumer/cancelProduct', product);
       }
 
       OrderProducts(order:Order):Observable<Boolean> {
-        return this.http.post<Boolean>(environment.serverURL + '/api/consumer/makeOrder', order);
+        return this.http.post<Boolean>(environment.serverURL_2 + '/api/consumer/makeOrder', order);
       }
 
       getCurrentOrder(email:string) : Observable<Order> {
-        return this.http.get<Order>(environment.serverURL + '/api/consumer/currentOrder/' + email);
+        return this.http.get<Order>(environment.serverURL_2 + '/api/consumer/currentOrder/' + email);
       }
 
       getTime(id:number) : Observable<StopWatch> {
-        return this.http.get<StopWatch>(environment.serverURL + '/api/consumer/getTime/' + id);
+        return this.http.get<StopWatch>(environment.serverURL_2 + '/api/consumer/getTime/' + id);
       }
 
       getPreviousOrders(email:string) : Observable<Order[]> {
-        return this.http.get<Order[]>(environment.serverURL + '/api/consumer/getPreviousOrders/' + email);
+        return this.http.get<Order[]>(environment.serverURL_2 + '/api/consumer/getPreviousOrders/' + email);
+      }
+
+      ChangeOrderStatus(param:RetString):Observable<Boolean> {
+        return this.http.post<Boolean>(environment.serverURL_2 + '/api/consumer/changeOrderStatus', param);
       }
 }

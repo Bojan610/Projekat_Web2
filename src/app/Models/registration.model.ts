@@ -8,5 +8,5 @@ export class Registration{
     userKind: string = "";
     image: string = "";
     password:string = "";
-    passwordConfirm:string = "";   
+    passwordConfirm:string = "";  
 }
